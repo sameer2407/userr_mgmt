@@ -4,7 +4,7 @@ import { FaUserEdit } from "react-icons/fa";
 import { HiUserAdd } from "react-icons/hi";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 import { Link } from "react-router-dom";
-
+import { Spinner } from "flowbite-react"; // Import Spinner
 import { MyContext } from "../contextAPI/MyContext";
 import Edit from "./Edit";
 import Add from "./Add";
@@ -12,6 +12,7 @@ import Add from "./Add";
 const UserList = () => {
   const { userData, setUserData } = useContext(MyContext);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true); // Add loading state
   const [openAddDialog, setOpenAddDialog] = useState(false);
   const [openEditDialog, setOpenEditDialog] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
@@ -32,8 +33,10 @@ const UserList = () => {
         }
         const data = await response.json();
         setUserData(data);
+        setLoading(false); // Set loading to false when data is fetched
       } catch (error) {
         setError(error.message);
+        setLoading(false); // Set loading to false on error
       }
     };
 
@@ -42,6 +45,15 @@ const UserList = () => {
 
   if (error) {
     return <div>Error: {error}</div>;
+  }
+
+  if (loading) {
+    // Display spinner while loading
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <Spinner size="xl" aria-label="Loading user data" />
+      </div>
+    );
   }
 
   const handleDelete = async (id) => {
@@ -58,6 +70,7 @@ const UserList = () => {
       }
 
       setUserData((prevData) => prevData.filter((user) => user.id !== id));
+      window.alert("User deleted successfully");
     } catch (error) {
       console.error("Error deleting user:", error.message);
     }

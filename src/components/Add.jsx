@@ -60,6 +60,9 @@ const Add = ({ title, openAddDialog, setOpenAddDialog }) => {
         console.log("New User:", newUser);
         setUserData((prevUsers) => [...prevUsers, newUser]);
         console.error("Failed to delete user");
+        window.alert("User added successfully");
+      } else {
+        throw new Error("Failed to add user");
       }
     } catch (error) {
       console.error("Error  adding user:", error);

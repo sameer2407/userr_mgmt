@@ -81,6 +81,9 @@ const Edit = ({ openEditDialog, setOpenEditDialog, selectedUser }) => {
             user.id === selectedUser.id ? updatedData : user
           )
         );
+        window.alert("updated succesfully");
+      } else {
+        throw new Error("update failed");
       }
     } catch (error) {
       console.error("Error updating user:", error);
