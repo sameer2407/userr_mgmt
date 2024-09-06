@@ -8,14 +8,13 @@ const Hero = () => {
       <p className="text-xl mb-12">
         Create, Read, Update, and Delete Users with ease!
       </p>
-      <Link to="/users">
-        <button
-          className="bg-white text-blue-700 px-8 py-3 rounded-lg text-xl font-semibold hover:bg-gray-100 transition duration-300"
-          // Navigate to the users listSSSS
-        >
-          Get Started
-        </button>
-      </Link>
+
+      <button
+        className="bg-white text-blue-700 px-8 py-3 rounded-lg text-xl font-semibold hover:bg-gray-100 transition duration-300"
+        // Navigate to the users listSSSS
+      >
+        Get Started
+      </button>
     </div>
   );
 };
